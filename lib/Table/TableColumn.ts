@@ -854,8 +854,8 @@ export default class TableColumn {
 
   private guessColumnTypeFromName(name: string): TableColumnType | undefined {
     const typeHintSet: TypeHintSet = [
-      { hint: /^(lon|long|longitude|lng)$/i, type: TableColumnType.longitude },
-      { hint: /^(lat|latitude)$/i, type: TableColumnType.latitude },
+      { hint: /^(lon|long|longitude|lng|longitud)$/i, type: TableColumnType.longitude },
+      { hint: /^(lat|latitude|latitud)$/i, type: TableColumnType.latitude },
       // Hide easting column if scalar
       {
         hint: /^(easting|eastings)$/i,
@@ -874,14 +874,14 @@ export default class TableColumn {
         type: TableColumnType.hidden,
         typeFromValues: TableColumnType.scalar
       },
-      { hint: /^(address|addr)$/i, type: TableColumnType.address },
+      { hint: /^(address|addr|direccion)$/i, type: TableColumnType.address },
       // Disable until we actually do something with the height data
       // {
       //   hint: /^(.*[_ ])?(depth|height|elevation|altitude)$/i,
       //   type: TableColumnType.height
       // },
-      { hint: /^(.*[_ ])?(time|date)/i, type: TableColumnType.time }, // Quite general, eg. matches "Start date (AEST)".
-      { hint: /^(year)$/i, type: TableColumnType.time } // Match "year" only, not "Final year" or "0-4 years".
+      { hint: /^(.*[_ ])?(time|date|fecha|created_at)/i, type: TableColumnType.time }, // Quite general, eg. matches "Start date (AEST)".
+      { hint: /^(year|año|anio|ano)$/i, type: TableColumnType.time } // Match "year" only, not "Final year" or "0-4 years".
     ];
 
     const match = typeHintSet.find((hint) => {
