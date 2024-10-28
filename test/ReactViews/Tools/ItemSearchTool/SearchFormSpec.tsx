@@ -63,6 +63,6 @@ function render(
   act(() => {
     rendered = create(<SearchForm {...props} />);
   });
-  // @ts-ignore
+  // @ts-expect-error assigned in callback
   return rendered;
 }
